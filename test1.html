@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #floating-panel {
+        position: relative;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #map {
+        position: relative;
+        height: 70%;
+        width: 100%
+      }
+      #errorText {
+        padding: 5px;
+        border: 2px solid #FF0000;
+      }
+      #list {
+        padding: 5px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+      b{
+        font-family: Roboto;
+      }
+      input{
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 70px;
+      }
+      input[type="text"]{
+        width: 300px;
+      }
+      select {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-right: 10px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+    <!-- <p>Title</p> -->
+    <b>Start: </b>
+    <input id="start" class="controls" type="text" value="Robinson College Cambridge UK" placeholder="Enter a location" onkeypress="keyPress(event)"><br>
+    <b>End: </b>
+    <input type="text" id="end" value="Homerton Cambridge UK" onkeypress="keyPress(event)"><br>
+
+    <b>Mode of Travel: </b>
+    <select id="mode" onchange="calcRoute()">
+      <option value="DRIVING">Driving</option>
+      <option value="WALKING">Walking</option>
+      <option value="BICYCLING">Bicycling</option>
+      <option value="TRANSIT">Transit</option>
+    </select>
+
+    <b>Places of interest: </b>
+    <select id="type" onchange="calcRoute()">
+      <option value="aquarium">Aquarium</option>
+      <option value="atm">ATM</option>
+      <option value="bus_station">Bus Station</option>
+      <option value="cafe">Cafe</option>
+      <option value="campground">Campground</option>
+      <option value="casino">Casino</option>
+      <option value="church">Church</option>
+      <option value="furniture_store">Furniture Store</option>
+      <option value="gas_station">Gas Station</option>
+      <option value="hospital">Hospital</option>
+      <option value="library">Library</option>
+      <option value="liquor_store">Liquor Store</option>
+      <option value="meal_takeaway">Meal Takeaway</option>
+      <option value="movie_rental">Movie Rental</option>
+      <option value="museum">Museum</option>
+      <option value="park">Park</option>
+      <option value="parking">Parking</option>
+      <option value="police">Police</option>
+      <option value="post_office">Post Office</option>
+      <option value="restaurant">Restaurant</option>
+      <option value="spa">Spa</option>
+      <option value="stadium">Stadium</option>
+      <option value="zoo">Zoo</option>
+    </select><br>
+
+    <b>Search Radius (50m-5000m): </b>
+    <input type="number" id="radius" value=250 onkeypress="keyPress(event)">
+    <p id="errorText" style="position:fixed;left:77%; display: none;"></p>
+    <br>
+
+    <button onclick="calcRoute()">Go</button>
+    <button onclick="deleteMarkers()">Clear Markers</button>
+    </div>
+
+    <div id="map"></div>
+    <div id="list" style="display: inline;"></div>
+    <div id="directionsPanel" style="display: none;"></div>
+
+    <script src="test1.js"></script>
+    <script defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9rWbiJEkEhxpk00MeMuOzh-gpHnCs3xM&callback=initMap&libraries=places">
+    </script>
+  </body>
+</html>
